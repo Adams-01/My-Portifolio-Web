@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adamz Portfolio</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:'#6366f1',secondary:'#8b5cf6'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, rgb(48, 48, 177) 50% , rgb(233, 233, 235) 20%);
+        }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+        .text-color{
+            color: rgb(109, 109, 109);
+        }
+
+img{
+    width: 500px;
+    height: auto;
+    margin-top: 100px;
+
+}
+
+        .project-card:hover img {
+            transform: scale(1.05);
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #0707fb;
+        }
+        .custom-input {
+            border-bottom: 2px solid #e5e7eb;
+            transition: border-color 0.3s ease;
+        }
+        .custom-input:focus {
+            border-color: #6366f1;
+        }
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #6366f1;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+        .progress-bar {
+            position: relative;
+            height: 6px;
+            border-radius: 3px;
+            background: #e5e7eb;
+            overflow: hidden;
+        }
+        .progress-bar-fill {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: linear-gradient(90deg, #6366f1, #8b5cf6);
+            border-radius: 3px;
+            transition: width 1.5s ease;
+        }
+        .scroll-animation {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .scroll-animation.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 w-full z-50 bg-white bg-opacity-90 backdrop-blur-md shadow-sm transition-all duration-300">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-3xl font-['Pacifico'] text-primary">Adamz</a>
+            
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#home" class="nav-link text-gray-700 hover:text-primary transition-colors">Home</a>
+                <a href="#about" class="nav-link text-gray-700 hover:text-primary transition-colors">About</a>
+                <a href="#skills" class="nav-link text-gray-700 hover:text-primary transition-colors">Skills</a>
+                <a href="#work" class="nav-link text-gray-700 hover:text-primary transition-colors">Work</a>
+                <a href="#contact" class="nav-link text-gray-700 hover:text-primary transition-colors">Contact</a>
+            </div>
+            
+            <button id="mobile-menu-button" class="md:hidden w-10 h-10 flex items-center justify-center text-gray-700">
+                <i class="ri-menu-line ri-lg"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white shadow-lg absolute w-full">
+            <div class="container mx-auto px-6 py-4 flex flex-col space-y-4">
+                <a href="#home" class="text-gray-700 hover:text-primary py-2 transition-colors">Home</a>
+                <a href="#about" class="text-gray-700 hover:text-primary py-2 transition-colors">About</a>
+                <a href="#skills" class="text-gray-700 hover:text-primary py-2 transition-colors">Skills</a>
+                <a href="#work" class="text-gray-700 hover:text-primary py-2 transition-colors">Work</a>
+                <a href="#contact" class="text-gray-700 hover:text-primary py-2 transition-colors">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-24 md:pt-0 min-h-screen flex items-center hero-gradient">
+        <div class="container mx-auto px-6 py-20 md:py-0">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="w-full md:w-1/2 text-white scroll-animation">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-4">Hi, I'm <span class="text-color">Adamz</span></h1>
+                    <h2 class="text-2xl md:text-4xl font-semibold mb-6">Creative Web Developer</h2>
+                    <p class="text-lg md:text-xl mb-8 max-w-lg">Transforming ideas into exceptional digital experiences with clean code and creative designs.</p>
+                    <div class="flex space-x-4">
+                        <a href="#work" class="bg-white text-primary px-8 py-3 !rounded-button font-medium hover:bg-gray-100 transition-colors whitespace-nowrap">View My Work</a>
+                        <a href="#contact" class="border-2 border-white text-white px-8 py-3 !rounded-button font-medium hover:bg-white hover:text-primary transition-colors whitespace-nowrap">Contact Me</a>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 mt-12 md:mt-0 flex justify-center scroll-animation" style="animation-delay: 0.3s;">
+                    <img src="image3 - Copy_1.jpg" alt="Creative Developer Illustration" class="max-w-full h-auto rounded-xl shadow-2xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 scroll-animation">About <span class="text-primary">Me</span></h2>
+            
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="w-full md:w-2/5 scroll-animation">
+                    <img src="image1.jpg" alt="Adam Portrait" class="w-full h-auto rounded-xl shadow-lg">
+                </div>
+                
+                <div class="w-full md:w-3/5 scroll-animation" style="animation-delay: 0.3s;">
+                    <h3 class="text-2xl font-semibold mb-4">Web Developer & UI/UX Designer</h3>
+                    <p class="text-gray-700 mb-6 leading-relaxed">
+                        I'm Adamz, a passionate web developer and designer with over 5 years of experience creating beautiful, functional websites and applications. Based in Kampala(Uganda), I specialize in crafting user-centered digital experiences that combine aesthetic appeal with technical excellence.
+                    </p>
+                    <p class="text-gray-700 mb-8 leading-relaxed">
+                        My approach combines creative problem-solving with clean, efficient code to deliver solutions that exceed client expectations. I'm constantly exploring new technologies and design trends to stay at the forefront of web development.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-6 mb-8">
+                        <div>
+                            <p class="font-medium">Name:</p>
+                            <p class="text-gray-700">Jules Adamz</p>
+                        </div>
+                        <div>
+                            <p class="font-medium">Email:</p>
+                            <p class="text-gray-700">julesasende1@gmail.com</p>
+                        </div>
+                        <div>
+                            <p class="font-medium">Location:</p>
+                            <p class="text-gray-700">Kampala, Uganda</p>
+                        </div>
+                        <div>
+                            <p class="font-medium">Availability:</p>
+                            <p class="text-gray-700">Freelance & Full-time</p>
+                        </div>
+                    </div>
+                    
+                    <a href="#contact" class="bg-primary text-white px-8 py-3 !rounded-button font-medium hover:bg-primary/90 transition-colors inline-block whitespace-nowrap">Get In Touch</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 scroll-animation">My <span class="text-primary">Skills</span></h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="scroll-animation">
+                    <h3 class="text-2xl font-semibold mb-8">Technical Skills</h3>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">HTML/CSS</span>
+                                <span>95%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-bar-fill" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">JavaScript</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-bar-fill" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">React</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-bar-fill" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Node.js</span>
+                                <span>80%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-bar-fill" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">UI/UX Design</span>
+                                <span>88%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-bar-fill" style="width: 88%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="scroll-animation" style="animation-delay: 0.3s;">
+                    <h3 class="text-2xl font-semibold mb-8">Professional Skills</h3>
+                    
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="skill-card bg-white p-6 rounded-lg shadow-md transition-all duration-300">
+                            <div class="w-12 h-12 flex items-center justify-center bg-primary/10 text-primary rounded-lg mb-4">
+                                <i class="ri-code-s-slash-line ri-xl"></i>
+                            </div>
+                            <h4 class="text-lg font-medium mb-2">Web Development</h4>
+                            <p class="text-gray-600 text-sm">Creating responsive, optimized websites with clean code.</p>
+                        </div>
+                        
+                        <div class="skill-card bg-white p-6 rounded-lg shadow-md transition-all duration-300">
+                            <div class="w-12 h-12 flex items-center justify-center bg-primary/10 text-primary rounded-lg mb-4">
+                                <i class="ri-layout-line ri-xl"></i>
+                            </div>
+                            <h4 class="text-lg font-medium mb-2">UI/UX Design</h4>
+                            <p class="text-gray-600 text-sm">Crafting intuitive interfaces and seamless user experiences.</p>
+                        </div>
+                        
+                        <div class="skill-card bg-white p-6 rounded-lg shadow-md transition-all duration-300">
+                            <div class="w-12 h-12 flex items-center justify-center bg-primary/10 text-primary rounded-lg mb-4">
+                                <i class="ri-smartphone-line ri-xl"></i>
+                            </div>
+                            <h4 class="text-lg font-medium mb-2">Responsive Design</h4>
+                            <p class="text-gray-600 text-sm">Building websites that work flawlessly across all devices.</p>
+                        </div>
+                        
+                        <div class="skill-card bg-white p-6 rounded-lg shadow-md transition-all duration-300">
+                            <div class="w-12 h-12 flex items-center justify-center bg-primary/10 text-primary rounded-lg mb-4">
+                                <i class="ri-speed-line ri-xl"></i>
+                            </div>
+                            <h4 class="text-lg font-medium mb-2">Performance</h4>
+                            <p class="text-gray-600 text-sm">Optimizing for speed, accessibility, and search engines.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Portfolio Section -->
+    <section id="work" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-6 scroll-animation">My <span class="text-primary">Work</span></h2>
+            <p class="text-gray-600 text-center max-w-2xl mx-auto mb-16 scroll-animation">Explore a selection of my recent projects showcasing my skills in web development and design.</p>
+            
+            <div class="flex justify-center mb-10 scroll-animation">
+                <div class="inline-flex bg-gray-100 p-1 rounded-full">
+                    <button class="filter-btn active px-6 py-2 rounded-full bg-primary text-white whitespace-nowrap">All</button>
+                    <button class="filter-btn px-6 py-2 rounded-full text-gray-700 hover:bg-gray-200 whitespace-nowrap">Web Design</button>
+                    <button class="filter-btn px-6 py-2 rounded-full text-gray-700 hover:bg-gray-200 whitespace-nowrap">UI/UX</button>
+                    
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="project-card overflow-hidden rounded-lg shadow-md scroll-animation">
+                    <div class="relative overflow-hidden group">
+                        <img src="https://readdy.ai/api/search-image?query=modern%20e-commerce%20website%20design%2C%20clean%20interface%2C%20product%20display%2C%20elegant%20layout%2C%20professional%20web%20design%20showcase%2C%20high%20quality&width=600&height=450&seq=3&orientation=landscape" alt="E-commerce Website" class="w-full h-64 object-cover object-top transition-transform duration-500">
+                        <div class="project-overlay absolute inset-0 bg-primary/80 flex flex-col justify-center items-center p-6 opacity-0 transition-opacity duration-300">
+                            <h3 class="text-xl font-semibold text-white mb-2">Luxury E-commerce</h3>
+                            <p class="text-white text-center mb-4">A premium shopping experience with advanced filtering and seamless checkout.</p>
+                            <a href="#" class="bg-white text-primary px-6 py-2 !rounded-button font-medium hover:bg-gray-100 transition-colors whitespace-nowrap">View Project</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card overflow-hidden rounded-lg shadow-md scroll-animation" style="animation-delay: 0.2s;">
+                    <div class="relative overflow-hidden group">
+                        <img src="https://readdy.ai/api/search-image?query=mobile%20app%20interface%20design%2C%20fitness%20tracking%20application%2C%20clean%20UI%2C%20activity%20dashboard%2C%20modern%20mobile%20design%2C%20professional%20showcase&width=600&height=450&seq=4&orientation=landscape" alt="Fitness App" class="w-full h-64 object-cover object-top transition-transform duration-500">
+                        <div class="project-overlay absolute inset-0 bg-primary/80 flex flex-col justify-center items-center p-6 opacity-0 transition-opacity duration-300">
+                            <h3 class="text-xl font-semibold text-white mb-2">FitTrack App</h3>
+                            <p class="text-white text-center mb-4">A fitness tracking application with personalized workout plans and progress analytics.</p>
+                            <a href="#" class="bg-white text-primary px-6 py-2 !rounded-button font-medium hover:bg-gray-100 transition-colors whitespace-nowrap">View Project</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card overflow-hidden rounded-lg shadow-md scroll-animation" style="animation-delay: 0.4s;">
+                    <div class="relative overflow-hidden group">
+                        <img src="https://readdy.ai/api/search-image?query=restaurant%20website%20design%2C%20elegant%20food%20menu%20layout%2C%20reservation%20system%2C%20culinary%20showcase%2C%20professional%20web%20design%20for%20fine%20dining&width=600&height=450&seq=5&orientation=landscape" alt="Restaurant Website" class="w-full h-64 object-cover object-top transition-transform duration-500">
+                        <div class="project-overlay absolute inset-0 bg-primary/80 flex flex-col justify-center items-center p-6 opacity-0 transition-opacity duration-300">
+                            <h3 class="text-xl font-semibold text-white mb-2">Gourmet Restaurant</h3>
+                            <p class="text-white text-center mb-4">An elegant website with online reservation system and interactive menu.</p>
+                            <a href="#" class="bg-white text-primary px-6 py-2 !rounded-button font-medium hover:bg-gray-100 transition-colors whitespace-nowrap">View Project</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card overflow-hidden rounded-lg shadow-md scroll-animation">
+                    <div class="relative overflow-hidden group">
+                        <img src="https://readdy.ai/api/search-image?query=travel%20booking%20website%20interface%2C%20destination%20search%2C%20flight%20booking%20system%2C%20modern%20travel%20platform%20design%2C%20professional%20web%20design%20showcase&width=600&height=450&seq=6&orientation=landscape" alt="Travel Platform" class="w-full h-64 object-cover object-top transition-transform duration-500">
+                        <div class="project-overlay absolute inset-0 bg-primary/80 flex flex-col justify-center items-center p-6 opacity-0 transition-opacity duration-300">
+                            <h3 class="text-xl font-semibold text-white mb-2">Wanderlust Travel</h3>
+                            <p class="text-white text-center mb-4">A comprehensive travel platform with booking system and destination guides.</p>
+                            <a href="#" class="bg-white text-primary px-6 py-2 !rounded-button font-medium hover:bg-gray-100 transition-colors whitespace-nowrap">View Project</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card overflow-hidden rounded-lg shadow-md scroll-animation" style="animation-delay: 0.2s;">
+                    <div class="relative overflow-hidden group">
+                        <img src="https://readdy.ai/api/search-image?query=financial%20dashboard%20interface%2C%20data%20visualization%2C%20analytics%20platform%2C%20modern%20fintech%20design%2C%20professional%20web%20application%20showcase&width=600&height=450&seq=7&orientation=landscape" alt="Financial Dashboard" class="w-full h-64 object-cover object-top transition-transform duration-500">
+                        <div class="project-overlay absolute inset-0 bg-primary/80 flex flex-col justify-center items-center p-6 opacity-0 transition-opacity duration-300">
+                            <h3 class="text-xl font-semibold text-white mb-2">FinTrack Dashboard</h3>
+                            <p class="text-white text-center mb-4">An intuitive financial analytics dashboard with real-time data visualization.</p>
+                            <a href="#" class="bg-white text-primary px-6 py-2 !rounded-button font-medium hover:bg-gray-100 transition-colors whitespace-nowrap">View Project</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card overflow-hidden rounded-lg shadow-md scroll-animation" style="animation-delay: 0.4s;">
+                    <div class="relative overflow-hidden group">
+                        <img src="https://readdy.ai/api/search-image?query=educational%20platform%20interface%2C%20online%20learning%20dashboard%2C%20course%20catalog%20design%2C%20modern%20e-learning%20website%2C%20professional%20web%20design%20showcase&width=600&height=450&seq=8&orientation=landscape" alt="Learning Platform" class="w-full h-64 object-cover object-top transition-transform duration-500">
+                        <div class="project-overlay absolute inset-0 bg-primary/80 flex flex-col justify-center items-center p-6 opacity-0 transition-opacity duration-300">
+                            <h3 class="text-xl font-semibold text-white mb-2">EduLearn Platform</h3>
+                            <p class="text-white text-center mb-4">A comprehensive e-learning platform with interactive courses and progress tracking.</p>
+                            <a href="#" class="bg-white text-primary px-6 py-2 !rounded-button font-medium hover:bg-gray-100 transition-colors whitespace-nowrap">View Project</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12 scroll-animation">
+                <a href="#" class="inline-flex items-center gap-2 text-primary font-medium hover:text-primary/80 transition-colors">
+                    Explore More Projects
+                    <i class="ri-arrow-right-line"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-6 scroll-animation">Get In <span class="text-primary">Touch</span></h2>
+            <p class="text-gray-600 text-center max-w-2xl mx-auto mb-16 scroll-animation">Have a project in mind or want to collaborate? Feel free to reach out!</p>
+            
+            <div class="flex flex-col md:flex-row gap-12">
+                <div class="w-full md:w-1/2 scroll-animation">
+                    <div class="bg-white p-8 rounded-lg shadow-md">
+                        <h3 class="text-2xl font-semibold mb-6">Send Me a Message</h3>
+                        
+                        <form id="contact-form">
+                            <div class="mb-6">
+                                <label for="name" class="block text-gray-700 mb-2">Your Name</label>
+                                <input type="text" id="name" class="w-full px-4 py-3 border-none bg-gray-50 rounded focus:ring-2 focus:ring-primary/20 text-sm" placeholder="John Doe" required>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label for="email" class="block text-gray-700 mb-2">Your Email</label>
+                                <input type="email" id="email" class="w-full px-4 py-3 border-none bg-gray-50 rounded focus:ring-2 focus:ring-primary/20 text-sm" placeholder="john@example.com" required>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label for="subject" class="block text-gray-700 mb-2">Subject</label>
+                                <input type="text" id="subject" class="w-full px-4 py-3 border-none bg-gray-50 rounded focus:ring-2 focus:ring-primary/20 text-sm" placeholder="Project Inquiry">
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label for="message" class="block text-gray-700 mb-2">Your Message</label>
+                                <textarea id="message" rows="5" class="w-full px-4 py-3 border-none bg-gray-50 rounded focus:ring-2 focus:ring-primary/20 text-sm" placeholder="Hello, I'd like to discuss a project..." required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-primary text-white py-3 !rounded-button font-medium hover:bg-primary/90 transition-colors whitespace-nowrap">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="w-full md:w-1/2 scroll-animation" style="animation-delay: 0.3s;">
+                    <div class="bg-white p-8 rounded-lg shadow-md mb-8">
+                        <h3 class="text-2xl font-semibold mb-6">Contact Information</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 flex items-center justify-center bg-primary/10 text-primary rounded-lg shrink-0">
+                                    <i class="ri-map-pin-line ri-lg"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium mb-1">Location</h4>
+                                    <p class="text-gray-600">Kampala, Uganda</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 flex items-center justify-center bg-primary/10 text-primary rounded-lg shrink-0">
+                                    <i class="ri-mail-line ri-lg"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium mb-1">Email</h4>
+                                    <p class="text-gray-600">julesasende1@gmail.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 flex items-center justify-center bg-primary/10 text-primary rounded-lg shrink-0">
+                                    <i class="ri-phone-line ri-lg"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium mb-1">Phone</h4>
+                                    <p class="text-gray-600">+256764641484</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 flex items-center justify-center bg-primary/10 text-primary rounded-lg shrink-0">
+                                    <i class="ri-time-line ri-lg"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium mb-1">Working Hours</h4>
+                                    <p class="text-gray-600">Monday - Friday: 9am - 6pm</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-8 rounded-lg shadow-md">
+                        <h3 class="text-2xl font-semibold mb-6">Follow Me</h3>
+                        
+                        <div class="flex gap-4">
+                            <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-100 hover:bg-primary hover:text-white text-gray-700 rounded-full transition-colors">
+                                <i class="ri-linkedin-fill ri-lg"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-100 hover:bg-primary hover:text-white text-gray-700 rounded-full transition-colors">
+                                <i class="ri-github-fill ri-lg"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-100 hover:bg-primary hover:text-white text-gray-700 rounded-full transition-colors">
+                                <i class="ri-dribbble-fill ri-lg"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-100 hover:bg-primary hover:text-white text-gray-700 rounded-full transition-colors">
+                                <i class="ri-behance-fill ri-lg"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-100 hover:bg-primary hover:text-white text-gray-700 rounded-full transition-colors">
+                                <i class="ri-instagram-fill ri-lg"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <div class="col-span-1 md:col-span-1">
+                    <a href="#" class="text-3xl font-['Pacifico'] text-white mb-6 inline-block">Adamz</a>
+                    <p class="text-gray-400 mb-6">Creating exceptional digital experiences through innovative web development and design solutions.</p>
+                    <div class="flex gap-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="ri-linkedin-fill ri-lg"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="ri-github-fill ri-lg"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="ri-dribbble-fill ri-lg"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="ri-instagram-fill ri-lg"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition-colors">About</a></li>
+                        <li><a href="#skills" class="text-gray-400 hover:text-white transition-colors">Skills</a></li>
+                        <li><a href="#work" class="text-gray-400 hover:text-white transition-colors">Portfolio</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">Services</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Web Development</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">UI/UX Design</a></li>
+                       
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">Search</h4>
+                    <div class="relative mb-6">
+                        <input type="text" placeholder="Search..." class="w-full bg-gray-800 border-none rounded-lg py-3 pl-4 pr-10 text-gray-300 focus:ring-2 focus:ring-primary/30 text-sm">
+                        <button class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+                            <i class="ri-search-line"></i>
+                        </button>
+                    </div>
+                    
+                    <h4 class="text-lg font-semibold mb-4">Newsletter</h4>
+                    <p class="text-gray-400 mb-4">Subscribe to receive updates on new projects and announcements.</p>
+                    <div class="flex">
+                        <input type="email" placeholder="Your email" class="w-full bg-gray-800 border-none rounded-l-lg py-3 px-4 text-gray-300 focus:ring-2 focus:ring-primary/30 text-sm">
+                        <button class="bg-primary hover:bg-primary/90 text-white px-4 rounded-r-lg whitespace-nowrap">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm">© 2025 Adamz. All rights reserved.</p>
+                <p class="text-gray-400 text-sm mt-4 md:mt-0">Last updated: June 20, 2025</p>
+            </div>
+        </div>
+    </footer>
+
+    <script id="navigation-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+                if (mobileMenu.classList.contains('hidden')) {
+                    mobileMenuButton.innerHTML = '<i class="ri-menu-line ri-lg"></i>';
+                } else {
+                    mobileMenuButton.innerHTML = '<i class="ri-close-line ri-lg"></i>';
+                }
+            });
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Close mobile menu if open
+                        if (!mobileMenu.classList.contains('hidden')) {
+                            mobileMenu.classList.add('hidden');
+                            mobileMenuButton.innerHTML = '<i class="ri-menu-line ri-lg"></i>';
+                        }
+                    }
+                });
+            });
+            
+            // Active link highlighting
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            window.addEventListener('scroll', function() {
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    
+                    if (pageYOffset >= sectionTop - 100) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+            
+            // Navbar background change on scroll
+            const navbar = document.querySelector('nav');
+            
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('shadow-md');
+                } else {
+                    navbar.classList.remove('shadow-md');
+                }
+            });
+        });
+    </script>
+
+    <script id="animation-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            // Scroll animations
+            const scrollAnimations = document.querySelectorAll('.scroll-animation');
+            
+            const checkScroll = function() {
+                scrollAnimations.forEach(animation => {
+                    const animationPosition = animation.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.2;
+                    
+                    if (animationPosition < screenPosition) {
+                        animation.classList.add('active');
+                    }
+                });
+            };
+            
+            // Initial check
+            checkScroll();
+            
+            // Check on scroll
+            window.addEventListener('scroll', checkScroll);
+            
+            // Progress bar animation
+            const progressBars = document.querySelectorAll('.progress-bar-fill');
+            
+            const animateProgressBars = function() {
+                progressBars.forEach(bar => {
+                    const barPosition = bar.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.2;
+                    
+                    if (barPosition < screenPosition) {
+                        const width = bar.style.width;
+                        bar.style.width = '0';
+                        
+                        setTimeout(() => {
+                            bar.style.width = width;
+                        }, 100);
+                    }
+                });
+            };
+            
+            // Initial animation
+            animateProgressBars();
+            
+            // Animate on scroll
+            window.addEventListener('scroll', animateProgressBars);
+        });
+    </script>
+
+    <script id="form-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            // Contact form handling
+            const contactForm = document.getElementById('contact-form');
+            
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const subject = document.getElementById('subject').value;
+                const message = document.getElementById('message').value;
+                
+                // Here you would typically send the form data to a server
+                // For demo purposes, we'll just log it and show a success message
+                console.log({name, email, subject, message});
+                
+                // Reset form
+                contactForm.reset();
+                
+                // Show success message (in a real implementation, you'd want to add this element to the DOM)
+                alert('Your message has been sent successfully!');
+            });
+        });
+    </script>
+
+    <script id="portfolio-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            // Portfolio filter functionality
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => {
+                        btn.classList.remove('active', 'bg-primary', 'text-white');
+                        btn.classList.add('text-gray-700', 'hover:bg-gray-200');
+                    });
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active', 'bg-primary', 'text-white');
+                    this.classList.remove('text-gray-700', 'hover:bg-gray-200');
+                    
+                    // In a real implementation, you would filter the projects here
+                    // For this demo, we'll just leave all projects visible
+                });
+            });
+        });
+    </script>
+</body>
+</html>
